@@ -46,3 +46,8 @@ Finally, restart your session or source your bashrc `source ~/.bashrc` to comple
 
 And you're done! Start navigating your filesystem as you normally would - the longer that `jd` is installed
 on your system, the more useful to you it becomes
+
+## Contributing
+
+Feel free to fork the repository and contribute! There are no particularly requirements for pull requests, but
+try to keep good style and readable code in mind as much as possible.
