@@ -23,4 +23,5 @@ function jd() {
 # jump-directory commands end"
 
 echo -e "$WRITE_STR" >> $LOGIN_FILE
+mkdir $DIR/../data
 touch $DIR/../data/cd_history.txt
