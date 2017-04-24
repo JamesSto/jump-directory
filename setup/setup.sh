@@ -18,10 +18,15 @@ function cd() {
     builtin cd \$1
 }
 function jd() {
-    cd \$(python $DIR/../src/jump_directory.py \$1)
+    found_dir=\`python /home/james/jump-directory/setup/../src/jump_directory.py \$1\`
+    if [ -n \"\$found_dir\" ]; then
+        cd \$found_dir
+    else
+        echo \"jd: cannot find \$1\"
+    fi
 }
 # jump-directory commands end"
 
 echo -e "$WRITE_STR" >> $LOGIN_FILE
-mkdir $DIR/../data
+mkdir $DIR/../data &> /dev/null
 touch $DIR/../data/cd_history.txt
