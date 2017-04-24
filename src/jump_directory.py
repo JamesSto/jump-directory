@@ -8,9 +8,10 @@ import os
 # TODO: Autocompletion of directories
 # TODO: Figure out unix installation?
 
-HISTORY_FILE = "./dir_history.json"
+file_dir = os.path.dirname(__file__)
+HISTORY_FILE = file_dir + "/../data/dir_history.json"
 BASH_HISTORY = os.path.expanduser("~/.bash_history")
-CD_HISTORY = "./cd_history.txt"
+CD_HISTORY = file_dir + "/../data/cd_history.txt"
 
 def strip_slash(s):
     # Strip trailing slash if it exists

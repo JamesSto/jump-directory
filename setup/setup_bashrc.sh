@@ -12,13 +12,13 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 WRITE_STR="# Commands added by jump-directory on `date`
 function cd() {
-    if [ -n "$1" ]; then 
-        echo \`readlink -fe \$1\` >> $DIR/cd_history.txt 
+    if [ -n \"\$1\" ]; then 
+        echo \`readlink -fe \$1\` >> $DIR/../data/cd_history.txt 
     fi
-    builtin cd $1
+    builtin cd \$1
 }
 function jd() {
-    cd \$(python $DIR/jump_directory.py \$1)
+    cd \$(python $DIR/../src/jump_directory.py \$1)
 }
 # jump-directory commands end"
 
