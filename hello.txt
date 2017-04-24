@@ -1,0 +1,13 @@
+
+# Commands added by jump-directory on Mon Apr 24 11:59:04 EDT 2017
+function cd() {
+ if [ -n hello.txt ]; then 
+ echo `readlink -fe $1` >> /home/james/jump-directory/cd_history.txt 
+ fi
+ builtin cd hello.txt
+}
+function jd() {
+ cd $(python /home/james/jump-directory/jump_directory.py $1)
+}
+# jump-directory commands end
+
