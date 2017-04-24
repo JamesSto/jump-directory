@@ -25,3 +25,22 @@ jd MyProject/src
 
 Will move to MyProject/src, even if there are many `src` directories on the system and `MyProject/src`
 is not the most visited.
+
+
+## Setup
+
+To setup, first clone the repository whereever you wish
+
+```
+https://github.com/JamesSto/jump-directory.git
+```
+
+Then, run the setup_bashrc.sh script. If you'd like to use a different bash login file than bashrc, you
+can specify it as a command line argument
+
+```
+./setup_bashrc.sh
+```
+
+And you're done! Start navigating your filesystem as you normally would - the longer that `jd` is installed
+on your system, the more useful to you it becomes
