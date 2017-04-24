@@ -32,7 +32,7 @@ is not the most visited.
 To setup, first clone the repository whereever you wish
 
 ```
-https://github.com/JamesSto/jump-directory.git
+git clone https://github.com/JamesSto/jump-directory.git
 ```
 
 Then, run the setup_bashrc.sh script. If you'd like to use a different bash login file than bashrc, you
