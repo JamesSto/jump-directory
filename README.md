@@ -39,7 +39,7 @@ Then, run the setup_bashrc.sh script. If you'd like to use a different bash logi
 can specify it as a command line argument
 
 ```
-setup/setup.sh
+./setup/setup.sh
 ```
 
 Finally, restart your session or source your bashrc `source ~/.bashrc` to complete the setup.
