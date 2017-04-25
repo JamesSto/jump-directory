@@ -39,13 +39,13 @@ Then, run the setup_bashrc.sh script. If you'd like to use a different bash logi
 can specify it as a command line argument
 
 ```
-./setup/setup.sh
+sudo ./setup/setup.sh
 ```
 
-Finally, restart your session or source your bashrc `source ~/.bashrc` to complete the setup.
+Finally, restart your session to complete the setup.
 
 And you're done! Start navigating your filesystem as you normally would - the longer that `jd` is installed
-on your system, the more useful to you it becomes
+on your system, the more useful to you it becomes.
 
 ## Contributing
 
