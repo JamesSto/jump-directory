@@ -29,14 +29,14 @@ is not the most visited.
 
 ## Setup
 
-To setup, first clone the repository whereever you wish
+To setup, first clone the repository wherever you wish
 
 ```
 git clone https://github.com/JamesSto/jump-directory.git
 ```
 
-Then, run the setup_bashrc.sh script. If you'd like to use a different bash login file than bashrc, you
-can specify it as a command line argument
+Then, run the setup.sh script. If you'd like to use a different bash login file than bashrc, you
+can specify it as a command line argument. Note the the setup requires that repository stays in whatever absolute filepath it is first put in.
 
 ```
 sudo ./setup/setup.sh
