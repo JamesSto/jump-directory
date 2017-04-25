@@ -1,21 +1,17 @@
 #!/usr/bin/env python
 
 from argparse import ArgumentParser
-from update_history import *
-
-# TODO: Autocompletion of directories
-# TODO: Figure out unix installation?
+from update_history import update_history
+from utils import strip_slash
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("dir", help="The directory to jump to")
 
     args = parser.parse_args()
-
-    history = update_history()
-
     args.dir = strip_slash(args.dir)
-
+    
+    history = update_history()
 
     best = "", -1
     for key in history:

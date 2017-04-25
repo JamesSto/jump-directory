@@ -3,18 +3,7 @@
 import os
 from collections import Counter
 import json
-
-file_dir = os.path.dirname(__file__)
-HISTORY_FILE = file_dir + "/../data/dir_history.json"
-BASH_HISTORY = os.path.expanduser("~/.bash_history")
-CD_HISTORY = file_dir + "/../data/cd_history.txt"
-
-
-def strip_slash(s):
-    # Strip trailing slash if it exists
-    if s.endswith("/"):
-        return s[:-1]
-    return s
+from utils import HISTORY_FILE, BASH_HISTORY, CD_HISTORY, strip_slash
 
 def update_history():
     if not os.path.isfile(HISTORY_FILE):
@@ -32,9 +21,11 @@ def update_history():
                 hist_json = Counter()
                 hist_json.update(paths)
                 h.write(json.dumps(hist_json))
+        else:
+            open(HISTORY_FILE, 'w').close()
 
     # Update on known history
-    with open(CD_HISTORY, 'r+') as h:
+    with open(CD_HISTORY, 'r') as h:
         cd_hist = [strip_slash(x.strip()) for x in h.readlines() if len(x.strip()) > 0]
         assert all(os.path.isabs(p) and os.path.isdir(p) for p in cd_hist)
     # Clear the history file
