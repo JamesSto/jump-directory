@@ -15,7 +15,7 @@ function cd() {
     if [ -n \"\$1\" ]; then 
         echo \`readlink -fe \$1\` >> $DIR/../data/cd_history.txt 
     fi
-    builtin cd \$1
+    builtin cd \"\$1\"
 }
 function jd() {
     found_dir=\`python /home/james/jump-directory/setup/../src/jump_directory.py \$1\`
