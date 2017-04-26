@@ -44,7 +44,7 @@ Then, run the setup.sh script. If you'd like to use a different bash login file 
 can specify it as a command line argument. Note the the setup requires that repository stays in whatever absolute filepath it is first put in.
 
 ```
-sudo ./setup/setup.sh
+./setup/setup.sh
 ```
 
 Finally, restart your session to complete the setup.
