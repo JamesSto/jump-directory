@@ -26,8 +26,10 @@ BASHRC_STR="# Commands added by jump-directory on `date`
 function cd() {
     if [ -n \"\$1\" ]; then 
         echo \`$READLINK -fe \$1\` >> $DIR/../data/cd_history.txt 
+        builtin cd \"\$1\"
+    else
+        builtin cd 
     fi
-    builtin cd \"\$1\"
 }
 function jd() {
     found_dir=\`python $DIR/../src/jump_directory.py \$1\`
