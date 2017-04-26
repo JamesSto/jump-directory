@@ -34,6 +34,11 @@ To setup, first clone the repository wherever you wish
 ```
 git clone https://github.com/JamesSto/jump-directory.git
 ```
+If you are on OSX, you will need to install the following brew packages:
+```
+brew install coreutils
+brew install bash-completion
+```
 
 Then, run the setup.sh script. If you'd like to use a different bash login file than bashrc, you
 can specify it as a command line argument. Note the the setup requires that repository stays in whatever absolute filepath it is first put in.

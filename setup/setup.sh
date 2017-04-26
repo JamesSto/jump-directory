@@ -1,24 +1,35 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-    echo "No login file specified; defaulting to ~/.bashrc"
-    LOGIN_FILE="$HOME/.bashrc"
+    if [[ "$unamestr" == 'Darwin' ]]; then  # Setup for OSX
+        echo "No login file specified; defaulting to ~/.bash_profile"
+        LOGIN_FILE="$HOME/.bash_profile"
+    else    
+        echo "No login file specified; defaulting to ~/.bashrc"
+        LOGIN_FILE="$HOME/.bashrc"
+    fi
 else
     LOGIN_FILE=$1
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+if [[ "$unamestr" == 'Darwin' ]]; then
+    READLINK="greadlink"
+else
+    READLINK="readlink"
+fi
+
 
 BASHRC_STR="# Commands added by jump-directory on `date`
 function cd() {
     if [ -n \"\$1\" ]; then 
-        echo \`readlink -fe \$1\` >> $DIR/../data/cd_history.txt 
+        echo \`$READLINK -fe \$1\` >> $DIR/../data/cd_history.txt 
     fi
     builtin cd \"\$1\"
 }
 function jd() {
-    found_dir=\`python /home/james/jump-directory/setup/../src/jump_directory.py \$1\`
+    found_dir=\`python $DIR/../src/jump_directory.py \$1\`
     if [ -n \"\$found_dir\" ]; then
         cd \$found_dir
     else
@@ -47,4 +58,13 @@ _jd()
 }
 complete -o nospace -F _jd jd"
 
-echo -e "$COMPLETION_FUNC" > /etc/bash_completion.d/jump-directory
+
+if [[ "$unamestr" == 'Darwin' ]]; then
+    BASH_COMPLETION_DIR="$(brew --prefix)/etc/bash_completion.d/jump-directory"
+else
+    BASH_COMPLETION_DIR="/etc/bash_completion.d/jump-directory"
+fi
+
+
+
+echo -e "$COMPLETION_FUNC" > "$BASH_COMPLETION_DIR"
