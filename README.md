@@ -39,6 +39,12 @@ If you are on OSX, you will need to install the following brew packages:
 brew install coreutils
 brew install bash-completion
 ```
+bash-completion requires you to add the following to your ~/.bash_profile
+```
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+. $(brew --prefix)/etc/bash_completion
+fi
+```
 
 Then, run the setup.sh script. If you'd like to use a different bash login file than bashrc, you
 can specify it as a command line argument. Note the the setup requires that repository stays in whatever absolute filepath it is first put in.
