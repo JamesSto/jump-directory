@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+unamestr=`uname`
 if [ -z "$1" ]; then
     if [[ "$unamestr" == 'Darwin' ]]; then  # Setup for OSX
         echo "No login file specified; defaulting to ~/.bash_profile"
