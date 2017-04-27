@@ -63,4 +63,4 @@ def forget(s):
         with open(HISTORY_FILE, 'w') as h:
             h.write(json.dumps(history))
     else:
-        print s + " not found in history"
+        print "Directory " + s + " not found in history"
