@@ -13,7 +13,7 @@ else
     LOGIN_FILE=$1
 fi
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [[ "$unamestr" == 'Darwin' ]]; then
     READLINK="greadlink"
@@ -24,50 +24,17 @@ fi
 
 BASHRC_STR="
 # Commands added by jump-directory on `date`
-function cd() {
-    builtin cd \"\$@\"
-    RV=\$?
-    if [ \$RV -ne 0 ]; then
-        return \$RV
-    fi
-    pwd >> $DIR/../data/cd_history.txt
-}
-function jd() {
-    found_dir=\`python $DIR/../src/jump_directory.py \"\$@\"\`
-    if [[ \$found_dir == \[RET_DIR\]* ]]; then
-        direc=\`echo \$found_dir | cut -c10-\`
-        if [ -n \"\$direc\" ]; then
-            cd \$direc
-        else
-            echo \"jd: cannot find \$@\"
-        fi
-    else
-        echo \"\$found_dir\"
-    fi
-}
+source $SETUP_DIR/../src/jd_wrappers.sh
 # jump-directory commands end
 "
 
 echo -e "$BASHRC_STR" >> $LOGIN_FILE
 mkdir $DIR/../data &> /dev/null
-touch $DIR/../data/cd_history.txt
+touch $SETUP_DIR/../data/cd_history.txt
 
 COMPLETION_FUNC="
 # Function for autocompletion of jd command
-SRC_DIR=$DIR/../src
-
-_jd()
-{
-    local cur prev opts
-    COMPREPLY=()
-    cur=\"\${COMP_WORDS[COMP_CWORD]}\"
-    prev=\"\${COMP_WORDS[COMP_CWORD-1]}\"
-    opts=\`python \$SRC_DIR/get_completions.py \$cur\`
-
-    COMPREPLY=( \$(compgen -W \"\${opts}\" -- \${cur}) )
-    return 0
-}
-complete -o nospace -F _jd jd
+source $SETUP_DIR/../src/jd_complete.sh
 "
 
 BASH_COMPLETION_DIR="$HOME/.bash_completion"

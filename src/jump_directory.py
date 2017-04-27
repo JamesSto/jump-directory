@@ -41,14 +41,14 @@ if __name__ == "__main__":
             else:
                 forget(abspath)
 
-    elif args.directory:
-        args.directory = strip_slash(args.dir)
+    elif args.dir:
+        args.dir = strip_slash(args.dir)
 
         best = "", -1
         for key in history:
             if key.endswith(args.dir):
                 # Only look for complete directories
-                if key == args.directory or key[-(len(args.directory)+1)] == "/":
+                if key == args.dir or key[-(len(args.dir)+1)] == "/":
                     best = max((key, history[key]), best, key=lambda x : x[1])
 
         # We print the output so that the bashrc file can pick up on that and actually cd to it
