@@ -22,12 +22,15 @@ else
 fi
 
 
-BASHRC_STR="# Commands added by jump-directory on `date`
+BASHRC_STR="
+# Commands added by jump-directory on `date`
 function cd() {
-    if [ -n \"\$1\" ]; then 
-        echo \`$READLINK -fe \$1\` >> $DIR/../data/cd_history.txt 
+    builtin cd \"\$@\"
+    RV=\$?
+    if [ \$RV -ne 0 ]; then
+        return \$RV
     fi
-    builtin cd \"\$1\"
+    pwd >> $DIR/../data/cd_history.txt
 }
 function jd() {
     found_dir=\`python $DIR/../src/jump_directory.py \$1\`
@@ -37,13 +40,15 @@ function jd() {
         echo \"jd: cannot find \$1\"
     fi
 }
-# jump-directory commands end"
+# jump-directory commands end
+"
 
 echo -e "$BASHRC_STR" >> $LOGIN_FILE
 mkdir $DIR/../data &> /dev/null
 touch $DIR/../data/cd_history.txt
 
-COMPLETION_FUNC="# Function for autocompletion of jd command
+COMPLETION_FUNC="
+# Function for autocompletion of jd command
 SRC_DIR=$DIR/../src
 
 _jd()
@@ -57,15 +62,8 @@ _jd()
     COMPREPLY=( \$(compgen -W \"\${opts}\" -- \${cur}) )
     return 0
 }
-complete -o nospace -F _jd jd"
+complete -o nospace -F _jd jd
+"
 
-
-if [[ "$unamestr" == 'Darwin' ]]; then
-    BASH_COMPLETION_DIR="$(brew --prefix)/etc/bash_completion.d/jump-directory"
-else
-    BASH_COMPLETION_DIR="/etc/bash_completion.d/jump-directory"
-fi
-
-
-
-echo -e "$COMPLETION_FUNC" > "$BASH_COMPLETION_DIR"
+BASH_COMPLETION_DIR="$HOME/.bash_completion"
+echo -e "$COMPLETION_FUNC" >> "$BASH_COMPLETION_DIR"
