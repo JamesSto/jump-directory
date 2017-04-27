@@ -33,11 +33,16 @@ function cd() {
     pwd >> $DIR/../data/cd_history.txt
 }
 function jd() {
-    found_dir=\`python $DIR/../src/jump_directory.py \$1\`
-    if [ -n \"\$found_dir\" ]; then
-        cd \$found_dir
+    found_dir=\`python $DIR/../src/jump_directory.py \"\$@\"\`
+    if [[ \$found_dir == \[RET_DIR\]* ]]; then
+        direc=\`echo \$found_dir | cut -c10-\`
+        if [ -n \"\$direc\" ]; then
+            cd \$direc
+        else
+            echo \"jd: cannot find \$@\"
+        fi
     else
-        echo \"jd: cannot find \$1\"
+        echo \"\$found_dir\"
     fi
 }
 # jump-directory commands end

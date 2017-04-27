@@ -22,4 +22,4 @@ if __name__ == "__main__":
 
     # We print the output so that the bashrc file can pick up on that and actually cd to it
     # I couldn't find any way to move directories more cleanly from within a Python script
-    print best[0]
+    print "[RET_DIR]" + best[0]
