@@ -7,8 +7,8 @@ _jd()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     opts=`python $DIR/get_completions.py $cur`
-
-    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    echo $opts > $HOME/blah.txt
+    eval COMPREPLY=($opts)
     return 0
 }
 complete -o nospace -F _jd jd
