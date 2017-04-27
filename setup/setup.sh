@@ -23,7 +23,7 @@ fi
 
 
 BASHRC_STR="
-# Commands added by jump-directory on `date`
+# Command added by jump-directory on `date`
 source $SETUP_DIR/../src/jd_wrappers.sh
 # jump-directory commands end
 "

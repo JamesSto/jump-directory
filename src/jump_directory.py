@@ -8,9 +8,10 @@ import os
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("dir", nargs='?', default=None, help="directory to jump to")
-    parser.add_argument("-l", "--list", action="store_true", default=False, help="list directories and times visited then exit")
-    parser.add_argument("--prioritize", action="store_true", default=False, help="make directory artificially most visited with same name")
-    parser.add_argument("--forget", action="store_true", default=False, help="remove directory from jd's memory")
+    action_args = parser.add_mutually_exclusive_group()
+    action_args.add_argument("-l", "--list", action="store_true", default=False, help="list directories and times visited then exit")
+    action_args.add_argument("--prioritize", action="store_true", default=False, help="make directory artificially most visited with same name")
+    action_args.add_argument("--forget", action="store_true", default=False, help="remove directory from jd's memory")
 
     args = parser.parse_args()
     
