@@ -5,6 +5,7 @@ file_dir = os.path.dirname(__file__)
 HISTORY_FILE = file_dir + "/../data/dir_history.json"
 BASH_HISTORY = os.path.expanduser("~/.bash_history")
 CD_HISTORY = file_dir + "/../data/cd_history.txt"
+FLAGS = ["--list", "-l", "-h", "--help", "--prioritize", "--forget"]
 
 
 def strip_slash(s):

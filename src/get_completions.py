@@ -2,6 +2,7 @@
 
 from update_history import update_history
 import sys
+from utils import FLAGS
     
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1].startswith("/"):
@@ -28,4 +29,4 @@ if __name__ == "__main__":
             out_str += n + "/ "
             seen.add(n)
 
-    print out_str
+    print out_str, " ".join(FLAGS)

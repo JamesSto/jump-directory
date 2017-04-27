@@ -39,3 +39,28 @@ def update_history():
         h.write(json.dumps(history))
 
     return history
+
+def prioritize(s):
+    history = update_history()
+    basename = os.path.basename(s)
+    curr = history[s] if s in history else 0
+    
+    vals = [history[p] for p in history if p != s and os.path.basename(p) == basename]
+    high = max(vals) if vals else 0
+
+    # Set to a minimum of 10, otherwise double closest value, but never lower than current value
+    history[s] = max(max(2*high,10), curr)
+    with open(HISTORY_FILE, 'w') as h:
+        h.write(json.dumps(history))
+
+    print "Prioritized " + s
+
+def forget(s):
+    history = update_history()
+    if s in history:
+        del history[s]
+        print "Deleted " + s + " from history"
+        with open(HISTORY_FILE, 'w') as h:
+            h.write(json.dumps(history))
+    else:
+        print s + " not found in history"
