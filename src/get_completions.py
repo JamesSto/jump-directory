@@ -6,6 +6,7 @@ from utils import FLAGS
     
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1].startswith("/"):
+        sys.stderr.write(str(sys.argv))
         sys.exit()
     history = update_history().items()
     search_phrase = sys.argv[1]
@@ -25,7 +26,7 @@ if __name__ == "__main__":
     for n in names:
         if n not in seen:
             if " " in n:
-                out_str += "'\"" + n + "/\"' "
+                out_str += "\"" + n + "/\" "
             else:
                 out_str += n + "/ "
             seen.add(n)
