@@ -27,7 +27,6 @@ def update_history():
     # Update on known history
     with open(CD_HISTORY, 'r') as h:
         cd_hist = [strip_slash(x.strip()) for x in h.readlines() if len(x.strip()) > 0]
-        assert all(os.path.isabs(p) and os.path.isdir(p) for p in cd_hist)
     # Clear the history file
     open(CD_HISTORY, 'w').close()
     with open(HISTORY_FILE, 'r') as h:

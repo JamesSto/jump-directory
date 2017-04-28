@@ -18,8 +18,6 @@ if __name__ == "__main__":
 
     # Sort by length and then remove counts
     names = [x[0] for x in sorted(matching_history, key=lambda x : x[1])]
-    # Add flags if they're possible (but last)
-    names += [f for f in FLAGS if f.startswith(search_phrase)]
 
     # Strip out duplicates
     seen = set()
@@ -27,9 +25,11 @@ if __name__ == "__main__":
     for n in names:
         if n not in seen:
             if " " in n:
-                out_str += "'\"" + n + "/\"'"
+                out_str += "'\"" + n + "/\"' "
             else:
                 out_str += n + "/ "
             seen.add(n)
+
+    out_str += " " + " ".join(f for f in FLAGS if f.startswith(search_phrase))
 
     print out_str
