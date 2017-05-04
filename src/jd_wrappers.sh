@@ -1,4 +1,5 @@
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#!/usr/env/bin bash
+DIR=`dirname "${BASH_SOURCE[0]}"`
 
 function cd() {
     builtin cd "$@"
@@ -6,7 +7,7 @@ function cd() {
     if [ $RV -ne 0 ]; then
         return $RV
     fi
-    pwd >> $DIR/../data/cd_history.txt
+    pwd >> "$DIR/../data/cd_history.txt"
 }
 function jd() {
     found_dir=`python $DIR/jump_directory.py "$@"`
