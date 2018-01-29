@@ -29,7 +29,6 @@ source $SETUP_DIR/../src/jd_wrappers.sh
 "
 
 echo -e "$BASHRC_STR" >> $LOGIN_FILE
-mkdir "$SETUP_DIR/../data" &> /dev/null
 touch $SETUP_DIR/../data/cd_history.txt
 
 COMPLETION_FUNC="

@@ -10,7 +10,7 @@ function cd() {
     pwd >> "$DIR/../data/cd_history.txt"
 }
 function jd() {
-    found_dir=`python $DIR/jump_directory.py "$@"`
+    found_dir=`python2 $DIR/jump_directory.py "$@"`
     if [[ $found_dir == \[RET_DIR\]* ]]; then
         direc=`echo $found_dir | cut -c10-`
         if [ -n "$direc" ]; then
