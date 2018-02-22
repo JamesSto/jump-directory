@@ -12,7 +12,7 @@ _file_completion ()
     x=$( compgen -d -- "$quoted" ) && while read -r tmp; do
         toks+=("$tmp");
     done <<< "$x";
-    x=`python $DIR/get_completions.py "${cur[@]}"`
+    x=`$DIR/get_completions.py "${cur[@]}"`
     eval toks=($x)
     if [[ "$1" != -d ]]; then
         xspec=${1:+"!*.@($1|${1^^})"};
